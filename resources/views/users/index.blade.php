@@ -43,9 +43,10 @@
                                     <form action="{{route('users.destroy', $user->id)}}" method="POST">
                                         {{method_field('DELETE')}}
                                         {{csrf_field()}}                                     
+                                        <a href="{{ route('users.edit', $user->id)}}" class="btn btn-primary btn-sm" role="button">Edit</a>
                                         <button class="btn btn-danger btn-sm">Delete</button>
                                     </form>
-                                    <a href="{{ route('users.edit', $user->id)}}" class="btn btn-primary btn-sm" role="button">Edit</a>
+                                    
                                 </td>
                             </tr>
                             @endforeach

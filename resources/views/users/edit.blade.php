@@ -23,8 +23,8 @@
 
 
                 <div class="panel-body">
-                    <form action="{{route('users.update'), $user->id}}" method="POST">
-                    {{method_field('PUT')}}
+                    <form action="{{route('users.update', $user->id)}}" method="POST">
+                    {{method_field('PATCH')}}
                         {{csrf_field()}}
                         <div class="form-group">
                             <label for="naziv">Username</label>
@@ -43,11 +43,12 @@
                             <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Ponovite password">
                         </div>
                         <form action="{{route('users.update', $user->id)}}" method="POST">
-                                        {{method_field('PUT')}}
-                                        {{csrf_field()}}                                     
-                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                        {{method_field('PATCH')}}
+                                        {{csrf_field()}}                   
+                                        <button type="submit" class="btn btn-primary">Edit</button>                  
+                                        <a href="{{ route('users.index')}}" class="btn btn-danger" role="button">Odustani</a>
                                     </form>
-                            <a href="{{ route('users.index')}}" class="btn btn-danger" role="button">Odustani</a>
+                            
                     </form>
                 </div>
             </div>
