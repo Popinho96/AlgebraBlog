@@ -32,19 +32,19 @@ Route::get('/posts', 'PostsController@index');
 Route::get('/posts/{id}', 'PostsController@show');
 
 
-/* 
-Route::get('/users', 'UsersController@index');
 
-Route::get('/users/create', 'UsersController@create')->name('users.create');
+//Route::get('/users', 'UsersController@index');
 
-Route::post('/users', 'UsersController@store');
+//Route::get('/users/create', 'UsersController@create')->name('users.create');
 
-Route::get('/users/{user}', 'UsersController@show');
+//Route::post('/users', 'UsersController@store');
 
-Route::get('/users/{user}/edit', 'UsersController@edit');
+//Route::get('/users/{user}', 'UsersController@show');
 
-Route::put('/users/{user}', 'UsersController@update');
+//Route::get('/users/{user}/edit', 'UsersController@edit');
 
-Route::delete('/users/{user}', 'UsersController@destroy'); */
+//Route::put('/users/{user}', 'UsersController@update');
+
+//Route::delete('/users/{user}', 'UsersController@destroy'); 
 
 Route::resource('users', 'UsersController');
