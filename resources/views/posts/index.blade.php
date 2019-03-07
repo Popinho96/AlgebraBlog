@@ -2,21 +2,20 @@
 
 @section('content')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-        @foreach ($posts as $key => $post)
-            <a href="posts/{{$post->id}}">
-            <li>{{$post->title}}</li>
-            </a>    
-            <section>
-                {{$post->body}}
-            </section>
-        @endforeach
+    <div class="col-sm-8 blog-main">
+    
+    @foreach ($posts as $key => $post)
+        <div class="blog-post">
+            <h2 class="blog-post-title">{{ $post->title }}</h2>
+            <p class="blog-post-meta"> {{ $post->created_at->toFormattedDateString() }} <a href="#">Mark</a></p>
+
+            <section>{{ $post->body }}</section>
+        </div>
+    @endforeach      
+    
+        <nav class="blog-pagination">
+            <a class="btn btn-outline-primary" href="#">Older</a>
+            <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+        </nav>
+    </div>
 @endsection

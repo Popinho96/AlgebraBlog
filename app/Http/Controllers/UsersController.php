@@ -59,8 +59,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('users.show');
+        $user = User::findOrFail($id);
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -73,7 +73,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         
-        return view(('users.edit'), compact('user'));
+        return view('users.edit', compact('user'));
     
     }
 
@@ -86,13 +86,15 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $user->name = $request['username'];
         $user->email = $request['email'];
-        $user->password = $request['password'];
+        if(!empty(request('password'))){
+            $user->password = request('password');
+        }
         $user->save();
 
-        return redirect()->route('users.index')->withFlashMessage('You have succesfully updated a user!');
+        return redirect()->route('users.index')->withFlashMessage('You have succesfully updated '.$user->name.'!');
     }
 
     /**
@@ -103,7 +105,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('users.index')->withFlashMessage('You have succesfully deleted a user!');
     }
