@@ -27,9 +27,16 @@ Route::get('/', function () {
                         //['user' => $user]
     //return view('about', compact('user'))/*->with(['user' => $user]);
 }); */
-Route::get('/posts', 'PostsController@index');
+Route::get('/posts', 'PostsController@index')->name('posts');
 
-Route::get('/posts/{id}', 'PostsController@show');
+Route::get('/posts/create', 'PostsController@create')->name('posts.create');
+
+Route::get('/posts/{post}', 'PostsController@show')->name('posts.show');
+
+Route::post('/posts', 'PostsController@store')->name('posts.store');
+
+
+
 
 
 

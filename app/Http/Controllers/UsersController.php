@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use Illuminate\Support\Facades\Hash;
+
 class UsersController extends Controller
 {
     /**
@@ -41,7 +43,7 @@ class UsersController extends Controller
         $user = new User();
         $user->name = $request['username'];
         $user->email = $request['email'];
-        $user->password = $request['password'];
+        $user->password = Hash::make($request['password']);
         //$user->remember_token = 'sdfjhfjdslkjdljkfsahjfdaslkjfakj';
         $user->save();
 
@@ -90,7 +92,7 @@ class UsersController extends Controller
         $user->name = $request['username'];
         $user->email = $request['email'];
         if(!empty(request('password'))){
-            $user->password = request('password');
+            $user->password = bcrypt(request('password'));
         }
         $user->save();
 

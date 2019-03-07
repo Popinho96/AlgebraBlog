@@ -3,11 +3,17 @@
 @section('content')
 
     <div class="col-sm-8 blog-main">
-    
+
+    <div class="panel-heading">
+        <a href="{{route('posts.create')}}" class="btn btn-primary" role="button">Add new post</a>
+    </div>
+
     @foreach ($posts as $key => $post)
         <div class="blog-post">
-            <h2 class="blog-post-title">{{ $post->title }}</h2>
-            <p class="blog-post-meta"> {{ $post->created_at->toFormattedDateString() }} <a href="#">Mark</a></p>
+            <a href="{{route('posts.show', $post->id)}}">
+                <h3 class="blog-post-title">{{ $post->title }}</h3>
+            </a>
+            <p class="blog-post-meta"> {{ $post->created_at->toFormattedDateString() }} <a href="#">{{$post->user->name}}</a></p>
 
             <section>{{ $post->body }}</section>
         </div>

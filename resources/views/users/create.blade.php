@@ -1,7 +1,6 @@
-@extends('auth.master')
+@extends('layouts.master')
 
 @section('content')
-
     @if(session()->has('flash_message'))
     <div class="alert alert-success alert-dismissible">
         {{session()->get('flash_message')}}
@@ -38,5 +37,6 @@
             </form>
         </div>
     </div>
+</div>
 
 @endsection
