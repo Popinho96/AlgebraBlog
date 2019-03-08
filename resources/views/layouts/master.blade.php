@@ -20,24 +20,27 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
 </head>
+
+
 <body>
 
     @include('layouts.nav')
 
     @include('layouts.header')
-    
-    
+
     <div id="app">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 blog-main">
 
                 @yield('content')
-                </div>
+
                 @include('layouts.sidebar')
+                
             </div>
         </div>
     </div>
+
     @include('layouts.footer')
+
 </body>
 </html>

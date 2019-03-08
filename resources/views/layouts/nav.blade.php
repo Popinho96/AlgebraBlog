@@ -7,10 +7,9 @@
             <!--Left Side-->
             <ul class="nav mr-auto">
                 <a class="nav-link active" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
-                <a class="nav-link" href="#">New features</a>
-                <a class="nav-link" href="#">Press</a>
-                <a class="nav-link" href="#">New hires</a>
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="{{ route('home') }}">Home</a>
+                <a class="nav-link" href="{{ route('posts') }}">Posts</a>
+                <a class="nav-link" href="{{ route('users.index') }}">Users</a>       
             </ul>
             <!-- Authentication Links -->
             @guest

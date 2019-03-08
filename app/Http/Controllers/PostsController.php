@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Post;
 
 class PostsController extends Controller
@@ -52,5 +53,36 @@ class PostsController extends Controller
         ]);
         return redirect()->route('posts');
 
+    }
+
+    public function edit($id)
+    {
+        $post = Post::find($id);
+        
+        return view('posts.edit', compact('post'));
+    
+    }
+
+    public function update($id)
+    {
+
+        request()->validate([
+            'title' => ['required', 'min:3', 'max:255'],
+            'body'  => 'required|min:3'
+        ]);
+
+        $post = Post::find($id);
+        $post->title = request('title');
+        $post->body = request('body');
+        $post->save();
+
+        return redirect()->route('posts')->withFlashMessage('You have succesfully updated your post '.$post->title.'!');
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('posts')->withFlashMessage('You have succesfully deleted a post: '.$post->title.'!');
     }
 }

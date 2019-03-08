@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -40,10 +46,17 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+
+        request()->validate([
+            'username' => ['required', 'min:3', 'max:255'],
+            'email'  => 'required',
+            'password'  => 'required|min:3'
+        ]);
+
         $user = new User();
-        $user->name = $request['username'];
-        $user->email = $request['email'];
-        $user->password = Hash::make($request['password']);
+        $user->name = request('username');
+        $user->email = request('email');
+        $user->password = Hash::make(request('password'));
         //$user->remember_token = 'sdfjhfjdslkjdljkfsahjfdaslkjfakj';
         $user->save();
 
@@ -88,9 +101,16 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        request()->validate([
+            'username' => ['required', 'min:3', 'max:255'],
+            'email'  => 'required',
+            'password'  => 'required|min:3'
+        ]);
+        
         $user = User::findOrFail($id);
-        $user->name = $request['username'];
-        $user->email = $request['email'];
+        $user->name = request('username');
+        $user->email = request('email');
         if(!empty(request('password'))){
             $user->password = bcrypt(request('password'));
         }

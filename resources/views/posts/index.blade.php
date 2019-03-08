@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="col-sm-8 blog-main">
+    @if(session()->has('flash_message'))
+    <div class="alert alert-success alert-dismissible">
+        {{ session()->get('flash_message') }}
+    </div>
+    @endif
 
     <div class="panel-heading">
         <a href="{{route('posts.create')}}" class="btn btn-primary" role="button">Add new post</a>
