@@ -12,6 +12,7 @@
 */
 
 use App\Post;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +28,8 @@ Route::get('/', function () {
                         //['user' => $user]
     //return view('about', compact('user'))/*->with(['user' => $user]);
 }); */
+
+//Posts
 Route::get('/posts', 'PostsController@index')->name('posts');
 
 Route::get('/posts/create', 'PostsController@create')->name('posts.create');
@@ -43,6 +46,9 @@ Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy')
 
 
 
+
+//Comments
+Route::post('/posts/{id}/comment', 'CommentController@store')->middleware('auth');
 
 
 
