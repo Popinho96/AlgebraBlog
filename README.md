@@ -1,3 +1,1 @@
 # AlgebraBlog
-
-Pozdrav, Antonio

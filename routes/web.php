@@ -49,6 +49,7 @@ Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy')
 
 //Comments
 Route::post('/posts/{id}/comment', 'CommentController@store')->middleware('auth');
+                                                            //->middleware('verified'); znači regist + potvrdjeni
 
 
 
@@ -69,6 +70,7 @@ Route::post('/posts/{id}/comment', 'CommentController@store')->middleware('auth'
 //Route::delete('/users/{user}', 'UsersController@destroy'); 
 
 Route::resource('users', 'UsersController');
-Auth::routes();
+
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
