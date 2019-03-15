@@ -13,6 +13,7 @@
 
 use App\Post;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,6 +51,10 @@ Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy')
 //Comments
 Route::post('/posts/{id}/comment', 'CommentController@store')->middleware('auth');
                                                             //->middleware('verified'); znači regist + potvrdjeni
+
+//Tags
+Route::get('/posts/tags/{tag}', 'TagController@index')->name('tags');
+
 
 
 

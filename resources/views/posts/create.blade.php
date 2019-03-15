@@ -35,6 +35,11 @@
                          <textarea class="form-control" id="body" name="body" rows="10" cols="80">{{ old('body') }}</textarea>
                     </div>
 
+                    <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+                         <label for="tag">Tags</label>
+                         <input type="text" class="form-control" id="tag" name="tag"/>
+                    </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Publish</button>
                         <a href="{{ route('posts') }}" class="btn btn-danger" role="button">Back</a>

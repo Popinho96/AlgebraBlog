@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Post;
 
+use App\Tag;
+
+use Carbon\Carbon;
+
 class PostsController extends Controller
 {
 
@@ -16,7 +20,19 @@ class PostsController extends Controller
     public function index(){
 
         //$posts = DB::table('posts')->get();
-        $posts = Post::latest()->get();
+        $posts = Post::latest();
+
+        if($month = request('month')){
+            $posts->whereMonth('created_at', Carbon::parse($month)->$month);
+        }
+
+        if($year = request('year')){
+            $posts->whereYear('created_at', $year);
+        }
+        
+        //$archives = Post::archives();
+
+        $posts = $posts->get();
         //return $posts;
         return view('posts.index', compact('posts'));
     }
@@ -46,11 +62,18 @@ class PostsController extends Controller
         $post->user_id = auth()->id();
         $post->save(); */
 
-        Post::create([
+        $post = Post::create([
             'title'     => request('title'),
             'body'      => request('body'),
             'user_id'   => auth()->id()
         ]);
+
+        $tag = request('tag');
+        $tag = Tag::where('name', $tag)-> get();
+        $tag_id = $tag->id;
+        dd($tag_id);
+        $post->tags()->attach($tag);
+
         return redirect()->route('posts');
 
     }
